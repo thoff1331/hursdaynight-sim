@@ -30,6 +30,11 @@ const addTeam = (req, res) => {
 const getAll = (req, res) => {
   res.json(teams);
 };
+const getTeam = (req, res) => {
+  const item = teams.findIndex(team => team.id === +req.params.id);
+
+  res.json(teams[item]);
+};
 
 const deleteTeam = (req, res) => {
   console.log(req.body.id);
@@ -42,5 +47,6 @@ module.exports = {
   deleteTeam,
   getAll,
   addTeam,
-  editTeam
+  editTeam,
+  getTeam
 };

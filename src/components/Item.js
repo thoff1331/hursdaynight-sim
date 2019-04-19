@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link, Route, HashRouter as Router } from "react-router-dom";
+import Team from "./Team";
 
 class Item extends Component {
   constructor() {
@@ -70,7 +72,6 @@ class Item extends Component {
   }
 
   render() {
-    console.log(this.state.newName);
     return (
       <div>
         <div>
@@ -79,14 +80,19 @@ class Item extends Component {
         </div>
         {this.state.teams.map(val => {
           return (
-            <div key={val.id}>
-              <h1>{val.name}</h1>
-              <button onClick={() => this.deleteTeam(val.id)}>Delete</button>
-              <input onChange={this.handleNameChange} />
-              <button onClick={() => this.handleNewClick(val.id)}>
-                Edit team Name
-              </button>
-            </div>
+            <Router>
+              <div key={val.id}>
+                <Link to={`/${val.id}`}>
+                  <h1>{val.name}</h1>{" "}
+                </Link>
+                <button onClick={() => this.deleteTeam(val.id)}>Delete</button>
+                <input onChange={this.handleNameChange} />
+                <button onClick={() => this.handleNewClick(val.id)}>
+                  Edit team Name
+                </button>
+                <Route path="/:id" component={Team} />
+              </div>
+            </Router>
           );
         })}
       </div>

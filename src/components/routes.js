@@ -11,6 +11,5 @@ export default (
     <Route component={Braves} path="/braves" />
     <Route component={Lakers} path="/lakers" />
     <Route component={Jazz} path="/jazz" />
-    <Route component={hild} path="/:id" />
   </Switch>
 );
